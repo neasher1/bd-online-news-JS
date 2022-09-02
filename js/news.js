@@ -36,6 +36,8 @@ const loadCategoryId = (loadId) => {
 
 const displayCategoryId = (news) => {
     // console.log(news);
+    //spinners start
+    toggleLoader(true);
     const categoriesConatiner = document.getElementById('displayCategoriesId');
     categoriesConatiner.innerHTML = ``;
     // for (const blogs of news) {
@@ -99,6 +101,8 @@ const displayCategoryId = (news) => {
         `;
         categoriesConatiner.appendChild(categoryDiv);
     });
+    //spinners stop
+    toggleLoader(false);
 };
 
 const loadBlogsDetails = (id) => {
@@ -115,4 +119,15 @@ displayBlogsDetails = data => {
         document.getElementById('modal-body').innerHTML = `<p>${showsData.details}</p>
         <p>Total Views: ${showsData.total_view}</p>`;
     });
+};
+
+//spinners control
+const toggleLoader = isLoading => {
+    const spinnersLoader = document.getElementById('spinners-loader');
+    if (isLoading) {
+        spinnersLoader.classList.remove('d-none');
+    }
+    else {
+        spinnersLoader.classList.add('d-none');
+    }
 };
