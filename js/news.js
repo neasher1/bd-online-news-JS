@@ -35,43 +35,15 @@ const loadCategoryId = (loadId) => {
 };
 
 const displayCategoryId = (news) => {
-    // console.log(news);
+    console.log(news);
     //spinners start
     toggleLoader(true);
+
+    const blogFound = document.getElementById('blog-found');
+    blogFound.innerHTML = `<h3 class="text-primary">${news.length} items found for this category</h3>`;
+
     const categoriesConatiner = document.getElementById('displayCategoriesId');
     categoriesConatiner.innerHTML = ``;
-    // for (const blogs of news) {
-    //     console.log(blogs);
-    //     const categoryDiv = document.createElement('div');
-    //     categoryDiv.classList.add('card');
-    //     categoryDiv.classList.add('mt-4');
-    //     categoryDiv.classList.add('mb-4');
-    //     categoryDiv.innerHTML = `
-    //     <div class="row g-2">
-    //         <div class="col-md-2 col-4">
-    //             <img src="${blogs.thumbnail_url}" class="img-fluid img-thumbnail" alt="...">
-    //         </div>
-    //         <div class="col-md-10 col-8">
-    //             <div class="card-body">
-    //                 <h5 class="card-title">${blogs.title}</h5>
-    //                 <p class="card-text">${blogs.details}</p>
-    //                 <div class="d-flex align-items-center justify-content-evenly">
-    //                     <img src="${blogs.author ? blogs.author.img : "Not Found Author Image"}" class="img-fluid rounded" alt="..." style="width: 50px; height:50px">
-    //                     <p class="card-title">${blogs.author ? blogs.author.name : "Not Found Author Name"}</p>
-    //                     <p class="card-title">Views: ${blogs.total_view}</p>
-    //                     <p>${blogs.author ? blogs.author.published_date : "Not Found published date"}</p>
-    //                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-    //                     data-bs-target="#blogDetails">Details</button>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    //     `;
-    //     categoriesConatiner.appendChild(categoryDiv);
-
-    //     // document.getElementById('modal-title').innerText = `${blogs.title}`;
-    //     // document.getElementById('modal-body').innerHTML = `${blogs.details}`;
-    // }
     news.forEach(blogs => {
         // console.log(blogs);
         const categoryDiv = document.createElement('div');
@@ -86,7 +58,7 @@ const displayCategoryId = (news) => {
             <div class="col-md-10 col-8">
                 <div class="card-body">
                     <h5 class="card-title">${blogs.title}</h5>
-                    <p class="card-text">${blogs.details}</p>
+                    <p class="card-text">${blogs.details.slice(0, 600)}</p>
                     <div class="d-flex align-items-center justify-content-evenly">
                         <img src="${blogs.author ? blogs.author.img : "Not Found Author Image"}" class="img-fluid rounded" alt="..." style="width: 50px; height:50px">
                         <p class="card-title">${blogs.author ? blogs.author.name : "Not Found Author Name"}</p>
