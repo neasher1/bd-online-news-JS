@@ -29,17 +29,21 @@ const displayCategory = (categories) => {
 const loadCategoryId = (loadId) => {
     // console.log(loadId);
     const url = `https://openapi.programming-hero.com/api/news/category/${loadId}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayCategoryId(data.data));
-};
-
-const displayCategoryId = (news) => {
-    console.log(news);
+    try {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displayCategoryId(data.data));
+    }
+    catch (error) {
+        console.log(error);
+    }
 
     //spinners start
     toggleLoader(true);
+};
 
+const displayCategoryId = (news) => {
+    // console.log(news);
     news.sort((a, b) => b.total_view - a.total_view);
 
     const blogFound = document.getElementById('blog-found');
@@ -48,7 +52,7 @@ const displayCategoryId = (news) => {
     const categoriesConatiner = document.getElementById('displayCategoriesId');
     categoriesConatiner.innerHTML = ``;
     news.forEach(blogs => {
-        console.log(blogs);
+        // console.log(blogs);
         const categoryDiv = document.createElement('div');
         categoryDiv.classList.add('card');
         categoryDiv.classList.add('mt-4');
@@ -82,13 +86,18 @@ const displayCategoryId = (news) => {
 
 const loadBlogsDetails = (id) => {
     const url = `https://openapi.programming-hero.com/api/news/${id}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayBlogsDetails(data.data));
+    try {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displayBlogsDetails(data.data));
+    }
+    catch (error) {
+        console.log(error);
+    }
 };
 
 displayBlogsDetails = data => {
-    console.log(data);
+    // console.log(data);
     data.forEach(showsData => {
         document.getElementById('modal-title').innerText = `${showsData.title}`;
         document.getElementById('modal-body').innerHTML = `<p>${showsData.details}</p>
